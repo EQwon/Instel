@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour
     [Header("Dialogue")]
     [SerializeField] private float delay;
     [SerializeField] private GameObject speechPanel;
-    [SerializeField] private Image speechBox;
-    [SerializeField] private Image nameBox;
+    [SerializeField] private GameObject speechBox;
+    [SerializeField] private GameObject nameBox;
     [SerializeField] private Text speakerName;
     [SerializeField] private Text speech;
     [SerializeField] private GameObject canGoNextObject;
@@ -53,13 +53,21 @@ public class UIManager : MonoBehaviour
 
         switch (dialogue[0])
         {
+            case "narration":
+                canGoNext = false;
+                nameBox.SetActive(false);
+                speech.color = Color.white;
+                StartCoroutine(PrintText(dialogue[1], dialogue[2]));
+                break;
             case "talk":
                 canGoNext = false;
+                nameBox.SetActive(true);
                 speech.color = Color.white;
                 StartCoroutine(PrintText(dialogue[1], dialogue[2]));
                 break;
             case "think":
                 canGoNext = false;
+                nameBox.SetActive(true);
                 speech.color = Color.grey;
                 StartCoroutine(PrintText(dialogue[1], dialogue[2]));
                 break;
@@ -68,12 +76,15 @@ public class UIManager : MonoBehaviour
                 {
                     for (int i = 0; i < characterImages.Count; i++) characterImages[i].SetActive(false);
                 }
-                characterImages[0].SetActive(true);
-                characterImages[0].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[1]).sprite;
-                if (dialogue.Count == 3)
+                else
                 {
-                    characterImages[1].SetActive(true);
-                    characterImages[1].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[2]).sprite;
+                    characterImages[0].SetActive(true);
+                    characterImages[0].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[1]).sprite;
+                    if (dialogue.Count == 3)
+                    {
+                        characterImages[1].SetActive(true);
+                        characterImages[1].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[2]).sprite;
+                    }
                 }
                 NextText();
                 break;
@@ -120,8 +131,8 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator PrintText(string name, string text)
     {
-        speechBox.color = cHolder.GetInfo(name).color;
-        nameBox.color = cHolder.GetInfo(name).color;
+        speechBox.GetComponent<Image>().color = cHolder.GetInfo(name).color;
+        nameBox.GetComponent<Image>().color = cHolder.GetInfo(name).color;
         speakerName.text = name;
         speech.text = text;
 
