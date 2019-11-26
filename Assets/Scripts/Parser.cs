@@ -9,6 +9,7 @@ public class Parser
         List<List<string>> returnList = new List<List<string>>();
         StringReader sr = new StringReader(data.text);
 
+        sr.ReadLine();                  // 제일 윗 줄을 건너뛴다.
         string source = sr.ReadLine();  // 먼저 한줄을 읽는다.
         string[] values;                // 구분된 데이터들을 저장할 배열 (values[0]이면 첫번째 데이터 )
            
@@ -21,7 +22,6 @@ public class Parser
             for (int i = 0; i < values.Length; i++)
             {
                 dialog.Add(values[i]);
-                //Debug.Log(values[i] + "/");
             }
 
             returnList.Add(dialog);     // 대화 저장

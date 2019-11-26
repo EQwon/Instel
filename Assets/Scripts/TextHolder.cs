@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TextHolder : MonoBehaviour
 {
-    [SerializeField] private TextAsset text;
+    [SerializeField] private List<TextAsset> texts;
 
-    public List<List<string>> GetDialogue()
+    public List<List<string>> GetDialogue(int num)
     {
-        return Parser.DialogParse(text);
+        return Parser.DialogParse(texts[num]);
     }
 }
