@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Background")]
+    [SerializeField] private Image backgroundImage;
+
     [Header("Dialogue")]
     [SerializeField] private float delay;
     [SerializeField] private GameObject speechPanel;
@@ -24,7 +27,7 @@ public class UIManager : MonoBehaviour
     private TextHolder tHolder;
     private CharacterHolder cHolder;
     private List<List<string>> nowDialogue;
-    private bool canGoNext = false;
+    private bool canGoNext = true;
     private int nowCnt;
 
     private void Awake()
@@ -53,6 +56,12 @@ public class UIManager : MonoBehaviour
 
         switch (dialogue[0])
         {
+            case "background":
+                string path = "Background/" + dialogue[1];
+                Sprite bg = Resources.Load<Sprite>(path);
+                backgroundImage.sprite = bg;
+                NextText();
+                break;
             case "narration":
                 canGoNext = false;
                 nameBox.SetActive(false);

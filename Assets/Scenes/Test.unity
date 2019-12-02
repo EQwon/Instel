@@ -1442,7 +1442,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bb366fc67197a42ab676b1b6795ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.5
+  backgroundImage: {fileID: 332058030}
+  delay: 0.01
   speechPanel: {fileID: 1897678096}
   speechBox: {fileID: 557757267}
   nameBox: {fileID: 1947933819}
