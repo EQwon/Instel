@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public enum CharacterName { 경찰, 나, 나레이션, 대리, 앵커, 여동생, 예진, 의사 }
+public enum CharacterName { 경찰, 나, 나레이션, 대리, 사수, 앵커, 여동생, 예진, 의사 }
 
 [System.Serializable]
 public class CharacterInfo

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Choice")]
     [SerializeField] private GameObject choicePanel;
-    [SerializeField] private List<Text> choiceTexts;
+    [SerializeField] private GameObject choicePrefab;
 
     private TextHolder tHolder;
     private CharacterHolder cHolder;
@@ -57,7 +57,7 @@ public class UIManager : MonoBehaviour
         switch (dialogue[0])
         {
             case "background":
-                string path = "Background/" + dialogue[1];
+                string path = "Background/" + dialogue[2];
                 Sprite bg = Resources.Load<Sprite>(path);
                 backgroundImage.sprite = bg;
                 NextText();
@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(PrintText(dialogue[1], dialogue[2]));
                 break;
             case "image":
-                if (dialogue[1] == "None")
+                if (dialogue[1] == "")
                 {
                     for (int i = 0; i < characterImages.Count; i++) characterImages[i].SetActive(false);
                 }
@@ -100,7 +100,7 @@ public class UIManager : MonoBehaviour
             case "choice":
                 List<string> choices = new List<string>();
 
-                for (int i = 0; i < choiceTexts.Count; i++) choices.Add(dialogue[i + 1]);
+                for (int i = 2; i < dialogue.Count; i++) choices.Add(dialogue[i]);
 
                 ShowChoicePanel(choices);
                 break;
@@ -112,6 +112,7 @@ public class UIManager : MonoBehaviour
     public void NextText()
     {
         if (canGoNext == false) return;
+        if (choicePanel.activeInHierarchy) return;
 
         nowCnt += 1;
         if (nowCnt >= nowDialogue.Count) return;
@@ -121,19 +122,42 @@ public class UIManager : MonoBehaviour
 
     public void ShowChoicePanel(List<string> choices)
     {
-        choicePanel.SetActive(true);
+        // 선택지로 보여줄 선택글들의 리스트
+        // 리스트의 갯수는 변동될 수 있다.
+        // 선택지 object를 생성해서 적절하게 align해야한다.
+        // 선택지들에게 버튼 액션을 할당한다.
 
-        for (int i = 0; i < choiceTexts.Count; i++)
+        float delta = (float)500 / choices.Count;
+
+        for (int i = 0; i < choices.Count; i++)
         {
-            choiceTexts[i].text = choices[i];
+            GameObject choice = Instantiate(choicePrefab, choicePanel.transform);
+            choice.GetComponent<RectTransform>().localPosition = new Vector3(0, (choices.Count - 1 - 2 * i) * 0.5f * delta, 0);
+            choice.transform.GetChild(0).GetComponent<Text>().text = choices[i];
+
+            int actionNum = new int();
+            actionNum = i + 2;
+            Debug.Log(actionNum + "를 할당했습니다.");
+            choice.GetComponent<Button>().onClick.AddListener(delegate { SelectChoice(actionNum); });
         }
+
+        choicePanel.SetActive(true);
     }
 
     public void SelectChoice(int num)
     {
+        // 선택지 패널을 끈다.
+        // 다음 dialogue를 읽어서 선택지에 해당하는 번호의 대화를 불러온다.
+
+        for (int i = choicePanel.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(choicePanel.transform.GetChild(i).gameObject);
+        }
         choicePanel.SetActive(false);
 
-        nowDialogue = tHolder.GetDialogue(int.Parse(nowDialogue[nowCnt + 1][num]));
+        Debug.Log((nowCnt + 1) + " 줄에 있는 " + num + "번째 숫자를 가지고 옵니다.");
+        int targetDialogueNum = int.Parse(nowDialogue[nowCnt + 1][num]);
+        nowDialogue = tHolder.GetDialogue(targetDialogueNum);
         nowCnt = 0;
         ShowText();
     }
