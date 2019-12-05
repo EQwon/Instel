@@ -24,6 +24,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject choicePanel;
     [SerializeField] private GameObject choicePrefab;
 
+    [Header("Info")]
+    [SerializeField] private GameObject infoPanel;
+    private bool isOn = false;
+    [SerializeField] private GameObject contents;
+
     private TextHolder tHolder;
     private CharacterHolder cHolder;
     private List<List<string>> nowDialogue;
@@ -97,6 +102,11 @@ public class UIManager : MonoBehaviour
                 }
                 NextText();
                 break;
+            case "info":
+                // dialogue[1]에 해당하는 정보를 생성에서 등록
+                contents.GetComponent<CardAlignController>().AddCard(dialogue[2], dialogue[3]);
+                NextText();
+                break;
             case "choice":
                 List<string> choices = new List<string>();
 
@@ -111,6 +121,8 @@ public class UIManager : MonoBehaviour
 
     public void NextText()
     {
+        OffInfoPanel();
+
         if (canGoNext == false) return;
         if (choicePanel.activeInHierarchy) return;
 
@@ -172,5 +184,25 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         canGoNext = true;
+    }
+
+    public void SwitchInfoPanel()
+    {
+        if (isOn) OffInfoPanel();
+        else OnInfoPanel();
+    }
+
+    private void OffInfoPanel()
+    {
+        RectTransform rect = infoPanel.GetComponent<RectTransform>();
+        rect.anchoredPosition = Vector3.zero;
+        isOn = false;
+    }
+
+    private void OnInfoPanel()
+    {
+        RectTransform rect = infoPanel.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector3(-680, 0, 0);
+        isOn = true;
     }
 }
