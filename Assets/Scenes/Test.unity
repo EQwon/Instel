@@ -573,7 +573,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 50892538}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9484181
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1568,7 +1568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.59589624}
+  m_AnchoredPosition: {x: 0, y: 0.00002740198}
   m_SizeDelta: {x: 0, y: 292.9}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &855086012
@@ -2138,9 +2138,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texts:
   - {fileID: 4900000, guid: a3ce088c5817b7344a0e35a76fac8206, type: 3}
-  - {fileID: 4900000, guid: 5575bf73d98af9240b02464b8d473724, type: 3}
-  - {fileID: 4900000, guid: 6d6aabeb5b2f4a943b0e5b2dc5720d1b, type: 3}
-  - {fileID: 4900000, guid: 5a05a199d784bc94d830cc5d43fc76bc, type: 3}
+  - {fileID: 4900000, guid: 2e29724b37753534aae57dcd5fee7d17, type: 3}
+  - {fileID: 4900000, guid: 9403784f44ea22f4db1ae8ea91fe7d16, type: 3}
+  - {fileID: 4900000, guid: f0a54012384ff1c4dadffb9e9cf84cc2, type: 3}
+  - {fileID: 4900000, guid: 4e6904055760eda4898adfca6d2fceef, type: 3}
+  - {fileID: 4900000, guid: 8f590b9546e943c4f8890c67403c19aa, type: 3}
+  - {fileID: 4900000, guid: 72614b8599281b64e92f2ea01366bb5d, type: 3}
+  - {fileID: 4900000, guid: 54e5c0fbc02b5b04aa8d38b5ad69e10f, type: 3}
+  - {fileID: 4900000, guid: 5632e2c50b1063946ad89d6d0d35d2c4, type: 3}
+  - {fileID: 4900000, guid: 3698af9549924624c96e2446405121f6, type: 3}
 --- !u!114 &1352677681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2183,7 +2189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters:
   - name: 0
-    sprite: {fileID: 21300000, guid: dcb39d9d5b98eac44921464dfee5eb0a, type: 3}
+    sprite: {fileID: 21300000, guid: 66e7776b62194cf47b8514a15d4252a9, type: 3}
     color: {r: 0, g: 0, b: 0.39215687, a: 1}
   - name: 1
     sprite: {fileID: 0}
@@ -2192,7 +2198,7 @@ MonoBehaviour:
     sprite: {fileID: 0}
     color: {r: 0, g: 0, b: 0, a: 1}
   - name: 3
-    sprite: {fileID: 21300000, guid: 9a7a311988da04a42a68731c9f53d30d, type: 3}
+    sprite: {fileID: 21300000, guid: 00e880031d5f80148bdc7ec91b94c3f0, type: 3}
     color: {r: 0, g: 0.39215687, b: 0, a: 1}
   - name: 4
     sprite: {fileID: 0}
@@ -2201,7 +2207,7 @@ MonoBehaviour:
     sprite: {fileID: 0}
     color: {r: 0.3921569, g: 0, b: 0.3921569, a: 1}
   - name: 6
-    sprite: {fileID: 21300000, guid: a9f650df6a459ee439f348b18715b0e5, type: 3}
+    sprite: {fileID: 21300000, guid: 2b3982e46679b394cb3d23e7475dde31, type: 3}
     color: {r: 0.3921569, g: 0, b: 0, a: 1}
   - name: 7
     sprite: {fileID: 0}

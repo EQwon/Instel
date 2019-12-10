@@ -86,9 +86,11 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(PrintText(dialogue[1], dialogue[2]));
                 break;
             case "image":
+                for (int i = 0; i < characterImages.Count; i++) characterImages[i].SetActive(false);
+
                 if (dialogue[1] == "")
                 {
-                    for (int i = 0; i < characterImages.Count; i++) characterImages[i].SetActive(false);
+                    
                 }
                 else
                 {
@@ -115,6 +117,10 @@ public class UIManager : MonoBehaviour
                 ShowChoicePanel(choices);
                 break;
             case "result":
+                int targetDialogueNum = int.Parse(nowDialogue[nowCnt][2]);
+                nowDialogue = tHolder.GetDialogue(targetDialogueNum);
+                nowCnt = 0;
+                ShowText();
                 break;
         }        
     }
