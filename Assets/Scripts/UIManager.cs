@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Info")]
     [SerializeField] private GameObject infoPanel;
+    [SerializeField] private GameObject alram;
     private bool isOn = false;
     [SerializeField] private GameObject contents;
 
@@ -40,6 +41,8 @@ public class UIManager : MonoBehaviour
         tHolder = GetComponent<TextHolder>();
         cHolder = GetComponent<CharacterHolder>();
         choicePanel.SetActive(false);
+
+        alram.SetActive(false);
     }
 
     private void Start()
@@ -107,6 +110,7 @@ public class UIManager : MonoBehaviour
             case "info":
                 // dialogue[1]에 해당하는 정보를 생성에서 등록
                 contents.GetComponent<CardAlignController>().AddCard(dialogue[2], dialogue[3]);
+                alram.SetActive(true);
                 NextText();
                 break;
             case "choice":

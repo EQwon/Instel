@@ -17,6 +17,7 @@ background		Background_Hospital
 think	나	?
 think	나	어?
 think	나	...
+info		얍	봐라!
 think	나	내가 왜 병원에 있어?
 think	나	아니 술을 마시고 뭔 일을 당한거지
 narration	나레이션	(팔에 찬 깁스를 내려다보며)
