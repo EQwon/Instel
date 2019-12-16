@@ -20,6 +20,10 @@ public class UIManager : MonoBehaviour
     [Header("Character")]
     [SerializeField] private List<GameObject> characterImages;
 
+    [Header("Object")]
+    [SerializeField] private GameObject objectPanel;
+    [SerializeField] private Image objectImage;
+
     [Header("Choice")]
     [SerializeField] private GameObject choicePanel;
     [SerializeField] private GameObject choicePrefab;
@@ -41,6 +45,7 @@ public class UIManager : MonoBehaviour
         tHolder = GetComponent<TextHolder>();
         cHolder = GetComponent<CharacterHolder>();
         choicePanel.SetActive(false);
+        objectPanel.SetActive(false);
 
         alram.SetActive(false);
     }
@@ -99,10 +104,12 @@ public class UIManager : MonoBehaviour
                 {
                     characterImages[0].SetActive(true);
                     characterImages[0].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[1]).sprite;
+                    ImageSizeFitter(characterImages[0].GetComponent<Image>());
                     if (dialogue.Count == 3)
                     {
                         characterImages[1].SetActive(true);
                         characterImages[1].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[2]).sprite;
+                        ImageSizeFitter(characterImages[1].GetComponent<Image>());
                     }
                 }
                 NextText();
@@ -111,6 +118,23 @@ public class UIManager : MonoBehaviour
                 // dialogue[1]에 해당하는 정보를 생성에서 등록
                 contents.GetComponent<CardAlignController>().AddCard(dialogue[2], dialogue[3]);
                 alram.SetActive(true);
+                NextText();
+                break;
+            case "object":
+                string objectName = dialogue[2];
+
+                if (objectName == "None")
+                    objectPanel.SetActive(false);
+                else
+                {
+                    string objectPath = "Object/" + objectName;
+                    Sprite sp = Resources.Load<Sprite>(objectPath);
+                    objectImage.sprite = sp;
+
+                    objectPanel.SetActive(true);
+                    objectImage.SetNativeSize();
+                }
+
                 NextText();
                 break;
             case "choice":
@@ -214,5 +238,17 @@ public class UIManager : MonoBehaviour
         RectTransform rect = infoPanel.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector3(-680, 0, 0);
         isOn = true;
+    }
+
+    private void ImageSizeFitter(Image target)
+    {
+        if (target.sprite == null) return;
+
+        float originWidth = target.sprite.rect.width;
+        float originHeight = target.sprite.rect.height;
+
+        float ratio = 960f / originHeight;
+
+        target.GetComponent<RectTransform>().sizeDelta = new Vector2(originWidth * ratio, 960f);
     }
 }
