@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject choicePanel;
     [SerializeField] private GameObject choicePrefab;
 
+    [Header("Scene Change")]
+    [SerializeField] private GameObject sceneChangePanel;
+
     [Header("Info")]
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private GameObject alram;
@@ -46,6 +49,7 @@ public class UIManager : MonoBehaviour
         cHolder = GetComponent<CharacterHolder>();
         choicePanel.SetActive(false);
         objectPanel.SetActive(false);
+        sceneChangePanel.SetActive(false);
 
         alram.SetActive(false);
     }
@@ -79,33 +83,32 @@ public class UIManager : MonoBehaviour
                 canGoNext = false;
                 nameBox.SetActive(false);
                 speech.color = Color.white;
+                speech.fontStyle = FontStyle.Bold;
                 StartCoroutine(PrintText(dialogue[1], dialogue[2]));
                 break;
             case "talk":
                 canGoNext = false;
                 nameBox.SetActive(true);
                 speech.color = Color.white;
+                speech.fontStyle = FontStyle.Normal;
                 StartCoroutine(PrintText(dialogue[1], dialogue[2]));
                 break;
             case "think":
                 canGoNext = false;
                 nameBox.SetActive(true);
                 speech.color = Color.grey;
+                speech.fontStyle = FontStyle.Italic;
                 StartCoroutine(PrintText(dialogue[1], dialogue[2]));
                 break;
             case "image":
                 for (int i = 0; i < characterImages.Count; i++) characterImages[i].SetActive(false);
 
-                if (dialogue[1] == "")
-                {
-                    
-                }
-                else
+                if (dialogue[1] != "")
                 {
                     characterImages[0].SetActive(true);
                     characterImages[0].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[1]).sprite;
                     ImageSizeFitter(characterImages[0].GetComponent<Image>());
-                    if (dialogue.Count == 3)
+                    if (dialogue[2] != "")
                     {
                         characterImages[1].SetActive(true);
                         characterImages[1].GetComponent<Image>().sprite = cHolder.GetInfo(dialogue[2]).sprite;
@@ -132,7 +135,6 @@ public class UIManager : MonoBehaviour
                     objectImage.sprite = sp;
 
                     objectPanel.SetActive(true);
-                    objectImage.SetNativeSize();
                 }
 
                 NextText();
@@ -149,6 +151,9 @@ public class UIManager : MonoBehaviour
                 nowDialogue = tHolder.GetDialogue(targetDialogueNum);
                 nowCnt = 0;
                 ShowText();
+                break;
+            case "endScene":
+                StartCoroutine(ChangeScene());
                 break;
         }        
     }
@@ -213,7 +218,7 @@ public class UIManager : MonoBehaviour
         speechBox.GetComponent<Image>().color = cHolder.GetInfo(name).color;
         nameBox.GetComponent<Image>().color = cHolder.GetInfo(name).color;
         speakerName.text = name;
-        speech.text = text;
+        speech.text = text.Replace('/', '\n');
 
         yield return new WaitForSeconds(delay);
 
@@ -250,5 +255,33 @@ public class UIManager : MonoBehaviour
         float ratio = 960f / originHeight;
 
         target.GetComponent<RectTransform>().sizeDelta = new Vector2(originWidth * ratio, 960f);
+    }
+
+    private IEnumerator ChangeScene()
+    {
+        sceneChangePanel.SetActive(true);
+        speechBox.GetComponent<Button>().interactable = false;
+
+        float speed = 4500f;
+        RectTransform rect = sceneChangePanel.GetComponent<RectTransform>();
+        rect.anchoredPosition = new Vector2(3000, 0);
+
+        while (rect.anchoredPosition.x > 0)
+        {
+            rect.anchoredPosition -= new Vector2(speed * Time.fixedDeltaTime, 0);
+            yield return new WaitForFixedUpdate();
+        }
+
+        NextText();
+        yield return new WaitForSeconds(2f);
+
+        while (rect.anchoredPosition.x > -3000f)
+        {
+            rect.anchoredPosition -= new Vector2(speed * Time.fixedDeltaTime, 0);
+            yield return new WaitForFixedUpdate();
+        }
+
+        sceneChangePanel.SetActive(false);
+        speechBox.GetComponent<Button>().interactable = true;
     }
 }
