@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
     private TextHolder tHolder;
     private CharacterHolder cHolder;
     private List<List<string>> nowDialogue;
+    int nowDialogueNum = 0;
     private bool canGoNext = true;
     private int nowCnt;
 
@@ -56,7 +57,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        nowDialogue = tHolder.GetDialogue(0);
+        nowDialogue = tHolder.GetDialogue(nowDialogueNum);
         nowCnt = 0;
         ShowText();
     }
@@ -135,6 +136,7 @@ public class UIManager : MonoBehaviour
                     objectImage.sprite = sp;
 
                     objectPanel.SetActive(true);
+                    objectImage.SetNativeSize();
                 }
 
                 NextText();
@@ -148,7 +150,8 @@ public class UIManager : MonoBehaviour
                 break;
             case "result":
                 int targetDialogueNum = int.Parse(nowDialogue[nowCnt][2]);
-                nowDialogue = tHolder.GetDialogue(targetDialogueNum);
+                nowDialogueNum += targetDialogueNum;
+                nowDialogue = tHolder.GetDialogue(nowDialogueNum);
                 nowCnt = 0;
                 ShowText();
                 break;
@@ -208,7 +211,8 @@ public class UIManager : MonoBehaviour
 
         Debug.Log((nowCnt + 1) + " 줄에 있는 " + num + "번째 숫자를 가지고 옵니다.");
         int targetDialogueNum = int.Parse(nowDialogue[nowCnt + 1][num]);
-        nowDialogue = tHolder.GetDialogue(targetDialogueNum);
+        nowDialogueNum += targetDialogueNum;
+        nowDialogue = tHolder.GetDialogue(nowDialogueNum);
         nowCnt = 0;
         ShowText();
     }
@@ -273,7 +277,7 @@ public class UIManager : MonoBehaviour
         }
 
         NextText();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         while (rect.anchoredPosition.x > -3000f)
         {
