@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     private TextHolder tHolder;
     private CharacterHolder cHolder;
     private List<List<string>> nowDialogue;
-    int nowDialogueNum = 0;
+    int nowDialogueNum = 33;
     private bool canGoNext = true;
     private int nowCnt;
 
@@ -124,7 +124,10 @@ public class UIManager : MonoBehaviour
                 break;
             case "info":
                 // dialogue[1]에 해당하는 정보를 생성에서 등록
-                contents.GetComponent<CardAlignController>().AddCard(dialogue[2], dialogue[3]);
+                string source = dialogue[2];
+                string[] values = source.Split('/');
+
+                contents.GetComponent<CardAlignController>().AddCard(values[0], values[1]);
                 alram.SetActive(true);
                 NextText();
                 break;
