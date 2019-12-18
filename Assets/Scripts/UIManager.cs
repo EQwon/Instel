@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     private TextHolder tHolder;
     private CharacterHolder cHolder;
     private List<List<string>> nowDialogue;
-    int nowDialogueNum = 57;
+    int nowDialogueNum = 0;
     private bool canGoNext = true;
     private int nowCnt;
 

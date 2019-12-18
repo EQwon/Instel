@@ -11,7 +11,7 @@ public class TitleController : MonoBehaviour
 
     public void MouseOver(RectTransform rect)
     {
-        rect.localScale = new Vector2(1.5f, 1.5f);
+        rect.localScale = new Vector2(1.35f, 1.35f);
 
         if (rect.GetComponent<Animator>())
         {
