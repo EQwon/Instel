@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -167,6 +168,9 @@ public class UIManager : MonoBehaviour
                 break;
             case "dayStart":
                 StartCoroutine(DayStart(dialogue[2], dialogue[3]));
+                break;
+            case "end":
+                SceneManager.LoadScene(0);
                 break;
         }        
     }
@@ -334,5 +338,10 @@ public class UIManager : MonoBehaviour
 
         dayStartPanel.SetActive(false);
         speechBox.GetComponent<Button>().interactable = true;
+    }
+
+    public void Title()
+    {
+        SceneManager.LoadScene(0);
     }
 }

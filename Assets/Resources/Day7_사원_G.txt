@@ -13,4 +13,4 @@ image
 background		Background_Black
 narration	나레이션	(그렇게 나는 구속되었고, 몇 년의 징역형을 선고받았다.)
 narration	나레이션	(모든 걸 잃었다. 후회 때문에 더 큰 후회를 남겼다./이미 늦었다. 죄송합니다, 과장님.)
-result		28
+result		30

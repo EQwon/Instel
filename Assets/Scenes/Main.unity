@@ -1029,7 +1029,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 472191498}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1352677681}
+        m_MethodName: Title
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &508175266
@@ -2452,8 +2463,16 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 73c1114a74673a0489d95d6e981b58ba, type: 3}
   - {fileID: 4900000, guid: 7dc67b76079bbe641bd91636538440b6, type: 3}
   - {fileID: 4900000, guid: cc46e4d84b122054d8bdf770399bfc33, type: 3}
-  - {fileID: 4900000, guid: 2041bc504f1790140bb440e9e62c5f63, type: 3}
   - {fileID: 4900000, guid: 20269c11bfb28cf4fa746953b40317c6, type: 3}
+  - {fileID: 4900000, guid: 741632b85523bad4fa887e773a7b6266, type: 3}
+  - {fileID: 4900000, guid: 80801a70e63772c4099782b2a9f3f8d3, type: 3}
+  - {fileID: 4900000, guid: ec6188ad80e27d749bf781a46d7fe4a4, type: 3}
+  - {fileID: 4900000, guid: 695c28a914754984094a06a841960a19, type: 3}
+  - {fileID: 4900000, guid: aa301cb742a2a904cb483252f062b3be, type: 3}
+  - {fileID: 4900000, guid: 2b8b775702eab7d479062b9ea40d356a, type: 3}
+  - {fileID: 4900000, guid: be2237da69bbb2c46bb33686ff11d9e1, type: 3}
+  - {fileID: 4900000, guid: 8ba97164e652dbd40b91d4c31cfff690, type: 3}
+  - {fileID: 4900000, guid: 95b390deda3ef6f48ac58b79dda77552, type: 3}
   - {fileID: 4900000, guid: 03a2af877ee2e3d479510a4f6948ef69, type: 3}
   - {fileID: 4900000, guid: ea1336517cf12834ca910f231fff5b35, type: 3}
   - {fileID: 4900000, guid: cbab524029397b34c8847d8b10835556, type: 3}
@@ -2483,7 +2502,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 03aa91875ceba264fae31b2d54b9ec7f, type: 3}
   - {fileID: 4900000, guid: ebca5203b8209c946bc144c02041a44a, type: 3}
   - {fileID: 4900000, guid: 8dc87d22aa8621f4e8029346dff2e293, type: 3}
-  - {fileID: 4900000, guid: a98da7a2e44b7124a9ea14909e342663, type: 3}
   - {fileID: 4900000, guid: 3fb1f0b4484e2e24fb2e447aa39d499a, type: 3}
   - {fileID: 4900000, guid: bff935c28ff163846b5d5570324a6eea, type: 3}
   - {fileID: 4900000, guid: c89e7961898381d4a852e9fb1e57110a, type: 3}
