@@ -1,4 +1,5 @@
 ﻿유형	인물	대사
+dayStart		사고 이후 5일차	Rememory
 background		Background_Black
 think	나	...
 think	나	으, 머리가 깨질 것 같다. 어제 회식을 달리기는 했는데/3차 노래방 이후로 기억이 없네

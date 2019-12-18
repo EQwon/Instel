@@ -28,7 +28,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject choicePanel;
     [SerializeField] private GameObject choicePrefab;
 
-    [Header("Scene Change")]
+    [Header("Change")]
+    [SerializeField] private GameObject dayStartPanel;
+    [SerializeField] private Text dayText;
+    [SerializeField] private Text descriptionText;
     [SerializeField] private GameObject sceneChangePanel;
 
     [Header("Info")]
@@ -50,6 +53,7 @@ public class UIManager : MonoBehaviour
         cHolder = GetComponent<CharacterHolder>();
         choicePanel.SetActive(false);
         objectPanel.SetActive(false);
+        dayStartPanel.SetActive(false);
         sceneChangePanel.SetActive(false);
 
         alram.SetActive(false);
@@ -157,6 +161,9 @@ public class UIManager : MonoBehaviour
                 break;
             case "endScene":
                 StartCoroutine(ChangeScene());
+                break;
+            case "dayStart":
+                StartCoroutine(DayStart(dialogue[2], dialogue[3]));
                 break;
         }        
     }
@@ -286,6 +293,43 @@ public class UIManager : MonoBehaviour
         }
 
         sceneChangePanel.SetActive(false);
+        speechBox.GetComponent<Button>().interactable = true;
+    }
+
+    private IEnumerator DayStart(string dayText, string descriptionText)
+    {
+        float delta = 0.8f;
+
+        this.dayText.text = "";
+        this.descriptionText.text = "";
+
+        Image image = dayStartPanel.GetComponent<Image>();
+        image.color = Color.clear;
+        dayStartPanel.SetActive(true);
+        speechBox.GetComponent<Button>().interactable = false;
+
+        while (image.color.a < 1f)
+        {
+            image.color += new Color(0, 0, 0, delta * Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+
+        this.dayText.text = dayText;
+        this.descriptionText.text = descriptionText;
+
+        yield return new WaitForSeconds(2f);
+        NextText();
+
+        this.dayText.text = "";
+        this.descriptionText.text = "";
+
+        while (image.color.a > 0)
+        {
+            image.color -= new Color(0, 0, 0, delta * Time.fixedDeltaTime);
+            yield return new WaitForFixedUpdate();
+        }
+
+        dayStartPanel.SetActive(false);
         speechBox.GetComponent<Button>().interactable = true;
     }
 }
