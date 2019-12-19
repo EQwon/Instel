@@ -15,6 +15,6 @@ talk	나	잠시만요.
 endScene		
 image	경찰	대리
 background		Background_Hospital_OneRoom
-narration	나레이션	(경찰의 안내에 따라 복도 끝에 있는 1인실로 발걸음을 옮긴다./대리는 준비되어 있는 의자 중 하나에 앉아 기다리고 있었다.)
+narration	나레이션	(경찰의 안내에 따라 복도 끝에 있는 1인실로 발걸음을 옮긴다./대리님은 준비되어 있는 의자 중 하나에 앉아 기다리고 있었다.)
 choice		먼저 얘기를 꺼내 대화를 주도한다.	경찰과 대리님이 무슨 얘기를 하는지 조금 지켜본다.
 result		1	2
