@@ -17,13 +17,13 @@ public class CardSizeFitter : MonoBehaviour
     private void ResizeCard()
     {
         float textSizeY = descriptionText.GetComponent<RectTransform>().sizeDelta.y;
-        descriptionBox.sizeDelta = new Vector2(descriptionBox.sizeDelta.x, textSizeY + 70);
-        GetComponent<RectTransform>().sizeDelta = new Vector2(GetComponent<RectTransform>().sizeDelta.x, textSizeY + 120);
+        descriptionBox.sizeDelta = new Vector2(descriptionBox.sizeDelta.x, textSizeY + 140);
+        GetComponent<RectTransform>().sizeDelta = new Vector2(GetComponent<RectTransform>().sizeDelta.x, textSizeY + 150);
     }
 
     public void SetText(string name, string description)
     {
         nameText.text = name;
-        descriptionText.text = description;
+        descriptionText.text = "  " + description;
     }
 }
